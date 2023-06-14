@@ -12,8 +12,26 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LogoDevIcon from "@mui/icons-material/LogoDev";
+import { router } from "@inertiajs/react";
+import { Switch } from "@mui/material";
 
 const pages = ["Semua Tugas", "Tugas Selesai", "Tugas Belum Selesai"];
+
+// const pages = [
+//   {
+//     title : "Semua Tugas",
+//     link : 'tasks.index'
+//   },
+//   {
+//     title : "Tugas Selesai",
+//     link : 'tasks.completed'
+//   },
+//   {
+//     title : "Tugas Belum Selesai",
+//     link : 'tasks.incompleted'
+//   },
+
+// ]
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -35,8 +53,17 @@ function ResponsiveAppBar() {
   };
 
   const navigatePage = (page) => {
-      console.log(`Navigating to ${page}`);
-      console.log(page)
+      switch(page){
+        case 'Semua Tugas':
+        window.location.href = route('tasks.index');
+        break;
+        case 'Tugas Selesai':
+        window.location.href = route('tasks.completed');
+        break;
+        case 'Tugas Belum Selesai':
+        window.location.href = route('tasks.incompleted');
+        break;
+      }
   }
 
   return (
@@ -91,14 +118,7 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem 
-                  key={page}
-                  onClick={()=> navigatePage(page) }
-                >
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+
             </Menu>
           </Box>
           <LogoDevIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -124,7 +144,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => navigatePage(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

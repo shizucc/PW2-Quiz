@@ -17,7 +17,7 @@ const AppLayout = (props) => {
             <TableTask
                 datas={props.tasks}
                 route_for_show={'tasks.show'}
-                data_for_select={props.stasuses}
+                data_for_select={props.statuses}
                 route_for_edit={'tasks.edit'}
                 route_for_update={'tasks.update'}
                 route_for_delete={'tasks.destroy'}

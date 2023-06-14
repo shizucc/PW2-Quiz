@@ -39,8 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('/tasks', TaskController::class);
 Route::get('/tasks/completed', [TaskController::class, 'completed'])->name('tasks.completed');
 Route::get('/tasks/incompleted', [TaskController::class, 'incompleted'])->name('tasks.incompleted');
+Route::resource('/tasks', TaskController::class);
 Route::put('/tasks/{id}-{status}', [TaskController::class,'updateStatus'])->name('tasks.updateStatus');
 require __DIR__.'/auth.php';

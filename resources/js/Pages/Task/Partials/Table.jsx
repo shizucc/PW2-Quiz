@@ -128,13 +128,13 @@ export default function Table(props) {
         useSortBy,
         usePagination
     );
-    const {delete:handleDelete,put} = useForm()
+    const {delete:handleDelete,put,get} = useForm()
     const handleDeleteClick = (id) => {
         handleDelete(route(props.route_for_delete, id))
     }
     
     const handleChangeStatus = (selected,id) => {
-        put(route("tasks.updateStatus",{id:id,status:selected}))
+        put(route('tasks.updateStatus', {id:id, status:selected}))
     };
 
     return (

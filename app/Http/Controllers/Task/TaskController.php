@@ -16,7 +16,7 @@ class TaskController extends Controller
     {
         $data = [
             'tasks' => Task::all(),
-            'stasuses' => Task::distinct()->get(['status'])
+            'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskList',$data);
     }
@@ -107,15 +107,15 @@ class TaskController extends Controller
 
     public function completed(){
         $data = [
-            'tasks' => Task::where('status', '=','selesai'),
+            'tasks' => Task::where('status', '=','selesai')->get(),
             'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskList', $data);
     }
 
-    public function incomplete(){
+    public function incompleted(){
         $data = [
-            'tasks' => Task::where('status', '=','belum selesai'),
+            'tasks' => Task::where('status', '=','belum selesai')->get(),
             'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskList', $data);
@@ -125,6 +125,6 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->status = $status;
         $task->save();
-        return redirect(route('tasks.show', $id));
+        return redirect(route('tasks.index', $id));
     }
 }
