@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LogoDevIcon from "@mui/icons-material/LogoDev";
 
-const pages = ["Home", "Products", "Blog", "About US"];
+const pages = ["Semua Tugas", "Tugas Selesai", "Tugas Belum Selesai"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -36,7 +36,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LogoDevIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

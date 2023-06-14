@@ -134,18 +134,19 @@ export default function Table(props) {
     }
     
     const handleChangeStatus = (selected,id) => {
-        console.log(selected,id)
         put(route("tasks.updateStatus",{id:id,status:selected}))
     };
 
     return (
         <>
+            <div style={{width:'25%'}}>
             <GlobalFilter
                 preGlobalFilteredRows={preGlobalFilteredRows}
                 globalFilter={state.globalFilter}
                 setGlobalFilter={setGlobalFilter}
                 className="my-5"
-            />
+                />
+            </div>
             <div className="mt-8 ml-2 mr-12 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

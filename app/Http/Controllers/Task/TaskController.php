@@ -27,7 +27,7 @@ class TaskController extends Controller
     public function create()
     {
         $data = [
-            'stasuses' => Task::distinct()->get(['status'])
+            'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskForm', $data);
     }
@@ -70,7 +70,7 @@ class TaskController extends Controller
     {
         $data = [
             'task'=> Task::find($id)->get(),
-            'stasuses' => Task::distinct()->get(['status'])
+            'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskForm',$data);
     }
@@ -107,7 +107,7 @@ class TaskController extends Controller
     public function completed(){
         $data = [
             'tasks' => Task::where('status', '=','selesai'),
-            'stasuses' => Task::distinct()->get(['status'])
+            'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskList', $data);
     }
@@ -115,7 +115,7 @@ class TaskController extends Controller
     public function incomplete(){
         $data = [
             'tasks' => Task::where('status', '=','belum selesai'),
-            'stasuses' => Task::distinct()->get(['status'])
+            'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskList', $data);
     }
