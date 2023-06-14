@@ -194,6 +194,12 @@ export default function Table(props) {
                                                     Status
                                                 </th>
                                                 <th
+                                                 scope="col"
+                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                 >
+                                                    Detail
+                                                </th>
+                                                <th
                                                     colSpan={2}
                                                     scope="col"
                                                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -293,6 +299,17 @@ export default function Table(props) {
                                                                     onChange={handleChangeStatus}
                                                                     id={row.original.id}
                                                                 />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <Link
+                                                                    
+                                                                    className="mr-2 ml-2 text-lg font-bold bg-[#70B547] text-[#F9F9F9] py-[10px] px-[20px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#446A2D] hover:drop-shadow-lg"
+                                                                    href={route(props.route_for_show,parseInt(row.original.id))}
+                                                                >
+                                                                    <span className="inline-flex align-middle gap-2">Detail</span>
+                                                                </Link>
                                                             </div>
                                                         </td>
                                                         <td>

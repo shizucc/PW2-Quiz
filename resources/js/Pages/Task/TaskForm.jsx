@@ -9,9 +9,9 @@ import BasicSelect from "@/Components/BasicSelect";
 
 const AppLayout = (props) => {
     console.log(props)
-    const [judul,setJudul] = useState(props.id? props.judul : '')
-    const [deskripsi,setDeskripsi] = useState(props.id? props.deskripsi : '')
-    const [status,setStatus] = useState(props.id? props.status : null)
+    const [judul,setJudul] = useState(props.id? props.task.judul : '')
+    const [deskripsi,setDeskripsi] = useState(props.id? props.task.deskripsi : '')
+    const [status,setStatus] = useState(props.id? props.task.status : props.statuses[0].status)
     const {data,setData,put,post} = useForm({
         judul : judul,
         deskripsi : deskripsi,
@@ -26,14 +26,18 @@ const AppLayout = (props) => {
         setDeskripsi(event.target.value)
         setData('deskripsi', event.target.value)
     }
-    const handleStatus = (event) => {
-        setStatus(event.target.value)
-        setData('status', event.target.value)
+    const handleStatus = (status) => {
+        setStatus(status)
+        setData('status', status)
     }
 
 
     const submit = () => {
-        console.log(judul,deskripsi)
+        if(props.id){
+            put(route('tasks.update', {id: props.id}))
+        } else {
+            post(route('tasks.store'))
+        }
     }
     return (<>
         <ResponsiveAppBar/>
@@ -64,8 +68,9 @@ const AppLayout = (props) => {
                             <BasicSelect
                                 title="Status"
                                 datas={props.statuses}
+                                default={status}
+                                onChange={handleStatus}
                             />
-
                         </div>
                         
                         <button type="submit" className="h-[40px] w-2/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out"><AddRoundedIcon/>

@@ -36,7 +36,7 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
         $request->validate([
             'judul' => 'required|string|max:50',
             'deskripsi' => 'required',
@@ -69,7 +69,8 @@ class TaskController extends Controller
     public function edit(string $id)
     {
         $data = [
-            'task'=> Task::find($id)->get(),
+            'id' => $id,
+            'task'=> Task::find($id),
             'statuses' => Task::distinct()->get(['status'])
         ];
         return Inertia::render('Task/TaskForm',$data);
@@ -90,7 +91,7 @@ class TaskController extends Controller
         $task->deskripsi = $request->deskripsi;
         $task->status = $request->status;
         $task->save();
-        return redirect(route('tasks.show',$id));
+        return redirect(route('tasks.index'));
 
     }
 
